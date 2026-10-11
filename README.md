@@ -18,6 +18,7 @@ The + layout was chosen over X because it patterns cleanly (one bar + circular p
 - Loads: 5 N upward on each motor mount top face (4 × 5 N = 20 N total = 2 kg thrust, a hard climb)
 - Contacts: bonded (default)
 ## Results
+<img width="1206" height="769" alt="image" src="https://github.com/user-attachments/assets/0db88128-a396-4bd9-865b-0625a7b5020e" />
 
 **Reading the table:** removing material raised stress and displacement, exactly as theory predicts - but the safety factor went from 109.7 to 62.3, still ~15x above the target of
 • 4. The frame was heavily over-designed in v1, and v2 proves the lightening method works while staying far inside the safe envelope.
@@ -30,29 +31,23 @@ at the plate edge:
 - Cross-section b = 0.02 m, h = 0.004 m
 1 → S =
 b. h2/6
-- o = F•L/S = **3.75 MPa**
-1 l Hand calc | FEA v2 | Difference |
-1-1-1------1
-I Max arm stress
-3.75 MPa
-1 4.415 MPa
+ F•L/S = **3.75 MPa**
+<img width="1206" height="269" alt="image" src="https://github.com/user-attachments/assets/238c1c7a-81f7-4022-980a-06cff025780c" />
+
 **15.1% - PASS**
-Script: F = 5;        % thrust per motor, N
+# Script:
+F = 5;        % thrust per motor, N
 L = 0.04;     % unsupported arm length (mount at 100mm, plate edge at 60mm), m
 b = 0.02;     % arm width, m
 h = 0.004;    % arm thickness, m
-
 S = b*h^2/6;            % rectangular section modulus, m^3
 sigma_MPa = F*L/S/1e6;  % max bending stress at arm root, MPa
-
 fea_v1 = 2.507;
 fea_v2 = 4.415;
-
 fprintf('Hand calc (cantilever beam): %.2f MPa\n', sigma_MPa);
 fprintf('FEA v1: %.3f MPa\n', fea_v1);
 fprintf('FEA v2: %.3f MPa\n', fea_v2);
 fprintf('Hand calc vs FEA v2 diff: %.1f percent\n', abs(sigma_MPa-fea_v2)/fea_v2*100);
-
 if abs(sigma_MPa-fea_v2)/fea_v2 < 0.5
     fprintf('PASS: hand calc agrees with FEA within 50 percent.\n');
 else
