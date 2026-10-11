@@ -18,21 +18,7 @@ The + layout was chosen over X because it patterns cleanly (one bar + circular p
 - Loads: 5 N upward on each motor mount top face (4 × 5 N = 20 N total = 2 kg thrust, a hard climb)
 - Contacts: bonded (default)
 ## Results
-I V1 | V2 | Change |
-1------
-----
-Mass
-444.25g | 410.35 g
-Max von Mises stress | 2.507
-**-7.6%**
-MPa
-1 4.415 MPa
-+76%
-Max
-displacement | 0.122 mm
-10.199 mm |
-+63%
-| Min safety factor | 109.7 | 62.3 | -43% |
+I V1 | V2 | Change |1----------Mass444.25g | 410.35 gMax von Mises stress | 2.507**-7.6%**MPa1 4.415 MPa+76%Maxdisplacement | 0.122 mm 10.199 mm |+63%| Min safety factor | 109.7 | 62.3 | -43% |
 **Reading the table:** removing material raised stress and displacement, exactly as theory predicts - but the safety factor went from 109.7 to 62.3, still ~15x above the target of
 • 4. The frame was heavily over-designed in v1, and v2 proves the lightening method works while staying far inside the safe envelope.
 In v2, peak stress shifted toward the slot ends (stress concentration at the cutouts) - expected, and a good reminder that cutout shape matters.
