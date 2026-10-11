@@ -1,0 +1,21 @@
+F = 5;        % thrust per motor, N
+L = 0.04;     % unsupported arm length (mount at 100mm, plate edge at 60mm), m
+b = 0.02;     % arm width, m
+h = 0.004;    % arm thickness, m
+
+S = b*h^2/6;            % rectangular section modulus, m^3
+sigma_MPa = F*L/S/1e6;  % max bending stress at arm root, MPa
+
+fea_v1 = 2.507;
+fea_v2 = 4.415;
+
+fprintf('Hand calc (cantilever beam): %.2f MPa\n', sigma_MPa);
+fprintf('FEA v1: %.3f MPa\n', fea_v1);
+fprintf('FEA v2: %.3f MPa\n', fea_v2);
+fprintf('Hand calc vs FEA v2 diff: %.1f percent\n', abs(sigma_MPa-fea_v2)/fea_v2*100);
+
+if abs(sigma_MPa-fea_v2)/fea_v2 < 0.5
+    fprintf('PASS: hand calc agrees with FEA within 50 percent.\n');
+else
+    fprintf('CHECK: large difference, review beam assumptions.\n');
+end
